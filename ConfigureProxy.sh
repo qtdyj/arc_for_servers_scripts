@@ -1,4 +1,4 @@
-mkdir ~/proxy
+mkdir ~/proxy/
 wget "https://github.com/qtdyj/arc_for_servers_scripts/blob/main/httpc-proxy" -O ~/proxy/httpc-proxy
 chmod +x ~/proxy/httpc-proxy
 
