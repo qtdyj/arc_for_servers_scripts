@@ -1,3 +1,6 @@
+apt update &> /dev/null
+apt upgrade -y &> /dev/null
+
 for i in {1..30}
 do
     sudo lsof /var/lib/dpkg/lock-frontend
