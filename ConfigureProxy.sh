@@ -1,6 +1,12 @@
 #!/bin/bash
 
-DirPath="$1"
+Interactive="$1"
+DirPath="$2"
+
+if [ "${Interactive,,}" != "true" ] && [ "${Interactive,,}" != "false" ]; then
+	echo "Interactive must be set to either true or false."
+	exit 1
+fi
 
 # Create directory for user proxy if needed
 if [ -n "$DirPath" ]; then
@@ -34,5 +40,9 @@ allow:
 EOF
 
 chmod +x "$MyProxy"
-# "$MyProxy" -b ":8888" -c "$ProxyConf"
-nohup "$MyProxy" -b ":8888" -c "$ProxyConf" &> /dev/null &
+
+if [ "${Interactive,,}" == "true" ]; then
+	"$MyProxy" -b ":8888" -c "$ProxyConf"
+else
+	nohup "$MyProxy" -b ":8888" -c "$ProxyConf" &> /dev/null &
+fi
