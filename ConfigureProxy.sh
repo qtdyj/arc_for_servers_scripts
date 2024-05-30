@@ -1,12 +1,26 @@
 #!/bin/bash
 
-Interactive="$1"
-DirPath="$2"
+Interactive=false
+DirPath=
 
-if [ "${Interactive,,}" != "true" ] && [ "${Interactive,,}" != "false" ]; then
-	echo "Interactive must be set to either true or false."
-	exit 1
-fi
+while getopts ":id:" opt; do
+  case "$opt" in
+    i)
+      Interactive=true
+      ;;
+    d)
+      DirPath="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
 
 # Create directory for user proxy if needed
 if [ -n "$DirPath" ]; then
