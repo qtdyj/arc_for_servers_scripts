@@ -3,7 +3,7 @@
 # Invoke-WebRequest -Uri "https://download.microsoft.com/download/2/1/0/210f77ca-e069-412b-bd94-eac02a63255d/AzureConnectedMachineAgent.msi" -OutFile $msiFile
 
 # use the latest version
-Invoke-WebRequest -Uri "https://aka.ms/AzureConnectedMachineAgent" -OutFile $msiFile
+Invoke-WebRequest -Uri "https://gbl.his.arc.azure.com/azcmagent/latest/AzureConnectedMachineAgent.msi" -OutFile $msiFile
 
 $logFile = Join-Path -Path "$env:Temp" -ChildPath "installationlog.txt"
 $argList = @("/i", "$msiFile" , "/l*v", "$logFile", "/qn", "REBOOT=ReallySuppress")
